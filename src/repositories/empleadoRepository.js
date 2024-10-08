@@ -1,5 +1,5 @@
 import { db } from '../config/firebase.js'
-import empleadoModel from '../models/empleadoModel.js'
+import empleadoModel from '../models/EmpleadoModel.js'
 
 class EmpleadoRepository {
   async createEmpleado(data) {

@@ -1,8 +1,8 @@
 import EmpleadoService from '../services/empleadoService.js'
 import { validationResult } from 'express-validator'
- 
+
 const empleadoService = new EmpleadoService()
- 
+
 const handValidationErrors = (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()){
@@ -12,7 +12,7 @@ const handValidationErrors = (req, res, next) => {
   }
   next()
 }
- 
+
 const createEmpleado = async (req, res) => {
   handValidationErrors(req)
   try {
@@ -28,7 +28,7 @@ const createEmpleado = async (req, res) => {
     })
   }
 }
- 
+
 const updateEmpleado = async (req, res) => {
   handValidationErrors(req)
   try {
@@ -80,11 +80,11 @@ const getEmpleadoById = async (req, res) => {
   handValidationErrors(req)
   try {
     const id = req.params.id
-    const empleado = empleadoService.getEmpleadoById(id)
+    const empleado = await empleadoService.getEmpleadoById(id)
     if (!empleado) {
-      res.status(400).json({
+      res.status(404).json({
         success: false,
-        message: 'Empleado no encontrado'
+        message: 'Empleado not found'
       })
     }
     res.status(201).json({
@@ -103,11 +103,11 @@ const getEmpleadoByUsername = async (req, res) => {
   handValidationErrors(req)
   try {
     const username = req.params.username
-    const empleado = empleadoService.getEmpleadoByUsername(username)
+    const empleado = await empleadoService.getEmpleadoByUsername(username)
     if (!empleado) {
-      res.status(400).json({
+      res.status(404).json({
         success: false,
-        message: 'Empleado no encontrado'
+        message: 'Empleado not found'
       })
     }
     res.status(201).json({
@@ -126,11 +126,11 @@ const getEmpleadoByRol = async (req, res) => {
   handValidationErrors(req)
   try {
     const rol = req.params.rol
-    const empleado = empleadoService.getEmpleadoByRol(rol)
+    const empleado = await empleadoService.getEmpleadoByRol(rol)
     if (!empleado) {
-      res.status(400).json({
+      res.status(404).json({
         success: false,
-        message: 'Empleado no encontrado'
+        message: 'Empleado not found'
       })
     }
     res.status(201).json({

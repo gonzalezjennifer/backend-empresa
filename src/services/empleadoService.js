@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import fs from 'fs'
 import path from 'path'
 import EmpleadoRepository from '../repositories/empleadoRepository.js'
-import EmpleadoModel from '../models/empleadoModel.js'
+import EmpleadoModel from '../models/EmpleadoModel.js'
 import { sendPasswordResetEmail } from '../utils/emailService.js'
 
 const empleadoRepository = new EmpleadoRepository()
