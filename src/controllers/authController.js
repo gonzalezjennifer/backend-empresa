@@ -4,8 +4,7 @@ import bcrypt from 'bcrypt'
 import { getEmpleadoByUsername } from './empleadoController.js'
 
 export const login = async (req, res) => {
-  const { usuario, password } = req.body 
-
+  const { usuario, password } = req.body
   try {
     const user = await getEmpleadoByUsername(usuario)
 
@@ -18,7 +17,7 @@ export const login = async (req, res) => {
 
     const isValid = await bcrypt.compare(password, user.password)
 
-    if (!isValid) {
+    if(!isValid) {
       res.status(401).json({
         error: true,
         message: 'La contraseña es incorrecta'
@@ -27,15 +26,15 @@ export const login = async (req, res) => {
 
     const token = jwt.sign({
       userId: user.id,
-      role: user.rol,
-      
+      role: user.rol
     },
     process.env.JWT_SECRET,
-    { 
-      expiresIn: '2h' 
+    {
+      expiresIn: '2h'
     }
-  )
-  return res.json({ token })
+    )
+    return res.json({ token })
+
   } catch (error) {
     res.status(401).json({
       error: true,

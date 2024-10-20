@@ -12,7 +12,7 @@ const saltRound = 10
 
 class EmpleadoService {
   async createEmpleado (data, file) {
-    const existEmpleado = await empleadoRepository.getEmpleadoByUsername(data.username)
+    const existEmpleado = await empleadoRepository.getEmpleadoByUsername(data.usuario)
     if (existEmpleado) {
       throw new Error('El username ya existe')
     }
@@ -27,7 +27,7 @@ class EmpleadoService {
       data.telefono,
       data.ciudad,
       data.estado,
-      data.username,
+      data.usuario,
       hashedPass,
       data.rol,
       null

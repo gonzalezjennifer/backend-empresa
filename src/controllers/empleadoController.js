@@ -14,7 +14,8 @@ const handValidationErrors = (req, res, next) => {
 }
 
 const createEmpleado = async (req, res) => {
-  handValidationErrors(req)
+  // handValidationErrors(req)
+  console.log('Body', req.body)
   try {
     const empleadoId = await empleadoService.createEmpleado(req.body, req.file)
     res.status(201).json({
